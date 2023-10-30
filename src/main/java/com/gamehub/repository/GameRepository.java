@@ -1,7 +1,6 @@
 package com.gamehub.repository;
 
 import com.gamehub.entity.Game;
-import com.gamehub.entity.Wallet;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
