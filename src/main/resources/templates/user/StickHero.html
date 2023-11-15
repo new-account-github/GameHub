@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" , content="width=device-width, initial-scale=1.0">
+	<title>Flappy Bird</title>
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/StickHero.css">
+</head>
+
+<body>
+	<div class="container">
+		<div id="score"></div>
+		<canvas id="game" width="375" height="375"></canvas>
+		<div id="introduction">Hold down the mouse or space button to stretch out a stick</div>
+		<div id="perfect">DOUBLE SCORE</div>
+		<button id="restart">RESTART</button>
+		<div class="gameover" id="gameover">
+			<div class="container-gameover">
+				<img class="form-gameover" src="/image/serverstatic/win.png"></img>
+				<img class="cup" src="/image/serverstatic/cup.gif"></img>
+				<div class="score" id="score-2">120</div>
+				<button class="btn btn-restart" id="restartButton">Restart</button>
+				<button class="btn-reward" id="rewardButton">Reward</button>
+				<button class="btn btn-quit" id="quitButton">Quit</button>
+			</div>
+		</div>
+	</div>
+	<script src="/js/StickHero.js"></script>
+</body>
+
+</html>
