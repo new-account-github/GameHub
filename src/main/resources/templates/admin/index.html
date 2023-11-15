@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<h1>Create NFT</h1>
+    <form id="nft" onsubmit="submitForm(event)">
+        <input type="text" id="wallet-address" placeholder="Your Wallet Address">
+        <input type="text" id="name-nft" placeholder="NFT Name">
+        <input type="text" id="symbol-nft" placeholder="NFT Symbol">
+        <input type="text" id="description" placeholder="NFT Description">
+        <input type="number" id="max-supply" min="1" placeholder="Number">
+        <input type="number" id="royalty" min="1" placeholder="Royalty">
+        <input type="file" id="file-nft" placeholder="Image">
+        <button type="submit">submit</button>
+    </form>
+    <script src="js/nft.js"></script>
+</body>
+</html>
