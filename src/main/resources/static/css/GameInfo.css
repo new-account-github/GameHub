@@ -1,0 +1,170 @@
+:root {
+    --dark-Violet: rgb(18, 12, 24);
+    --pink: rgb(228, 37, 117);
+}
+
+body {
+    background-color: black;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+/*===================nav===================*/
+.nav {
+    width: 100vw;
+    height: 12%;
+    background-color: var(--dark-Violet);
+    padding-left: 5rem;
+    padding-right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-list {
+    display: flex;
+}
+
+.nav-item {
+    margin-right: 2rem;
+}
+
+/* ===================Body======================*/
+/*==============Banner container================*/
+.banner-container {
+    margin-top: 0.5rem;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.banner-container::before{
+    content: "";
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* Điều chỉnh màu sắc và độ đậm của gradient */
+    width: 90vw;
+    height: 20vh;
+    position: absolute;
+    left: 5w;
+    top: 0;
+    
+    z-index: 1;
+}
+.banner-container::after{
+    content: "";
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* Điều chỉnh màu sắc và độ đậm của gradient */
+    width: 90vw;
+    height: 20vh;
+    position: absolute;
+    left: 5vw;
+    bottom: 0;
+    z-index: 1;
+}
+.banner {
+    width: 90vw;
+    height: 86vh;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+.name {
+    position: absolute;
+    top: 23rem;
+    left: 100px;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.info {
+    position: absolute;
+    width: 60vw;
+    top: 28rem;
+    left: 100px;
+    font-weight: bold;
+    z-index: 2;
+}
+.btn-play{
+    width: 8rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    background-color: var(--pink);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    position: absolute;
+    right: 8vw;
+    top: 29rem;
+    align-items: center;
+    z-index: 2;
+}
+.btn-play:hover{
+    cursor: pointer;
+}
+.btn-play:active{
+    background-color: rgb(138, 2, 58);
+}
+/*===============Tab Content============*/
+/* Thiết lập kiểu cho tab container */
+.tab-container {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-top: 4rem;
+}
+.tabs{
+    margin-bottom: 1rem;
+}
+/* Ẩn input radio */
+.tabs input[type="radio"] {
+    display: none;
+}
+
+/* Thiết lập kiểu cho label */
+.tabs label {
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Kiểu cho label được chọn */
+.tabs input[type="radio"]:checked + label {
+    border-bottom: solid var(--pink) 2px;
+}
+
+/* Thiết lập kiểu cho nội dung tab 1 */
+/* left-side*/
+.left-side{
+    width: 56vw;
+}
+.tab-content {
+    display: none;
+    margin-top: 4rem;
+}
+.title-content{
+    margin-top: 4rem;
+    font-size: 1.2rem;
+}
+.text{
+    margin-top: 1rem;
+    color: rgb(139, 139, 139);
+    font-size: 0.9rem;
+}
+
+/*------------------footer*/
+.footer{
+    margin-top: 3rem;
+    height: 1.5rem;
+    width: 100vw;
+    color: white;
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--dark-Violet);
+    padding-top: 0.5rem;
+}
+
+
+

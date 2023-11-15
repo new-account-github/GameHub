@@ -74,12 +74,16 @@ async function getNFTs() {
                 NFTs = result.result.nfts;
                 console.log(NFTs )
                 var nftsElement = document.querySelector(".list-nft");
-                for (let i = 0;i < NFTs.length; i++) {
+                if(NFTs.length == 0){
+					nftsElement.innerHTML +=`<h4 style="margin-top:40px">You don't own any NFTs at GameHub yet</h4>`
+				}else{
+					for (let i = 0;i < NFTs.length; i++) {
                     nftsElement.innerHTML +=`<div class="item">
                         <img src=${NFTs[i].image_uri} alt=""/>
                         <div class="name-nft">${NFTs[i].name}</div>
                     </div>`
                 }
+				}
             })
             .catch(error => console.log('error', error));
     }, 1000); // 1000 miligiây = 1 giây

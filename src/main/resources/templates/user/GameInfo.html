@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/GameInfo.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="logo">GameHub</div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/home">Games</a></li>
+            <li class="nav-item"><a href="/wallet">Wallet</a></li>
+            <li class="nav-item"><a href="#">MarketPlace</a></li>
+            <li class="nav-item"><a href="#">Account</a></li>
+        </ul>
+    </div>
+    <div class="body">
+        <div class="banner-container">
+            <img class="banner" src="image/serverstatic/StickHero.png">
+            <div class="name">Stick Hero</div>
+            <div class="info">Aurory, in its current state, is a gaming platform focused on a sustainable next
+                generation
+                'Play and Own' ecosystem. Our goal is to build an immersive platform consisting of multiple
+                interoperable games
+                , mini-games and dApps, where players can use their Aurory assets in any experience that exists on our
+                platform.
+            </div>
+            <a class="btn-play" href="/stickhero">Play</a>
+        </div>
+        <div class="tab-container">
+            <div class="tabs">
+                <input type="radio" id="tab1" name="tab-group" checked>
+                <label for="tab1" onclick="showTab('tab1-content')">Overview</label>
+                <input type="radio" id="tab2" name="tab-group">
+                <label for="tab2" onclick="showTab('tab2-content')">NFTs</label>
+            </div>
+
+            <div class="tab-content" id="tab1-content">
+                <div class="left-side">
+                    <!-- Nội dung cho tab 1 -->
+                    <div class="title-content">Introduction</div>
+                    <div class="text">Faraway Land is a free-to-play land strategy game. Players can farm resources,
+                        construct buildings, grow their base population and build factories that produce mintable Gear
+                        which can be used in Mini Royale: Nations and traded on open economy gaming marketplaces.</div>
+                    <div class="title-content">Overview</div>
+                    <div class="text">Gameplay & Economy
+                        Faraway Land is a strategy game where players build factories, houses and electricity stations
+                        to earn resources. The final goal is to create Gear for Mini Royale: Nations through game
+                        mechanics. All Gear within the Faraway Land universe are on-chain NFTs and can be freely minted
+                        and traded within the marketplace.</div>
+                </div>
+                <div class="right-side">
+
+                </div>
+
+            </div>
+
+            <div class="tab-content" id="tab2-content">
+                <!-- Nội dung cho tab 2 -->
+                <p>Nội dung của tab 2.</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        Create by @HoangMDung
+    </div>
+
+    <script src="js/GameInfo.js"></script>
+</body>
+
+</html>
