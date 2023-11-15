@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +13,24 @@
 <body>
     <div class="nav">
         <div class="logo">GameHub</div>
-        <ul class="nav-list">            
-            <li class="nav-item"><a href="/home">Games</a></li>
-            <li class="nav-item"><a href="/wallet">Wallet</a></li>
+        <th:block th:if="${isAuthenticated}">
+        <ul class="nav-list">
+            <li class="nav-item"><a th:href="@{|/home|}">Games</a></li>
+            <li class="nav-item"><a th:href="@{|/wallet|}">Wallet</a></li>
             <li class="nav-item"><a href="#">MarketPlace</a></li>
             <li class="nav-item"><a href="#">Account</a></li>
+            <li class="nav-item"><a th:href="@{|/logout|}">Logout</a></li>
+            <th:block th:if="${isAdmin}">
+            <li class="nav-item"><a th:href="@{|/admin|}">Admin</a></li>
+            </th:block>
         </ul>
+        </th:block>
+
+        <th:block th:unless="${isAuthenticated}">
+            <ul class="nav-list">
+                <li class="nav-item"><a th:href="@{|/login|}">Login</a></li>
+            </ul>
+        </th:block>
     </div>
     <div class="body-1">
         <div class="banner-hub">
@@ -61,7 +73,12 @@
             <div class="body-game">
                 <div class="g-title">Rogue Nation</div>
                 <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" href="/GameInfo">Explore Game</a>
+                <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
+            </div>
+            <div class="body-game">
+                <div class="g-title">Rogue Nation</div>
+                <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on difficult dungeons, raids, and other players!</div>
+                <a class="g-btn"  th:href="@{|/GameInfo|}">Explore Game</a>
             </div>
             <div class="body-game">
                 <div class="g-title">Rogue Nation</div>
@@ -71,12 +88,7 @@
             <div class="body-game">
                 <div class="g-title">Rogue Nation</div>
                 <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" href="/GameInfo">Explore Game</a>
-            </div>
-            <div class="body-game">
-                <div class="g-title">Rogue Nation</div>
-                <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" href="/GameInfo">Explore Game</a>
+                <a class="g-btn"  th:href="@{|/GameInfo|}">Explore Game</a>
             </div>
         </div>
     </div>

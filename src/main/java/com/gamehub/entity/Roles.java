@@ -1,11 +1,9 @@
 package com.gamehub.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -14,13 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table
-public class Game {
+public class Roles implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    private String icon;
-
+    @OneToMany(mappedBy = "role")
+    private List<Authority> authority;
 }

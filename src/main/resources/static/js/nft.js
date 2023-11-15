@@ -10,14 +10,6 @@ async function submitForm(event) {
   const fileNft = document.getElementById("file-nft").files[0];
   const fileName = fileNft.name;
 
-  console.log(walletAddress);
-  console.log(nftName);
-  console.log(nftSymbol);
-  console.log(nftDescription);
-  console.log(maxSupply);
-  console.log(royalty);
-  console.log(fileNft);
-
   var myHeaders = new Headers();
   myHeaders.append("x-api-key", "0Bt3GbCL2ul_fOVH");
 
@@ -47,8 +39,36 @@ async function submitForm(event) {
     redirect: "follow",
   };
 
-  fetch("https://api.shyft.to/sol/v2/nft/create", requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+  try {
+    const response = await fetch("https://api.shyft.to/sol/v2/nft/create", requestOptions);
+    const result = await response.json();
+    
+    if (response.ok) {
+      const resultContainer = document.getElementById("result-container");
+
+
+      await fetch("/nft/create",{
+        method : 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: nftName,
+          mint: result.result.mint,
+          encoded_transaction: result.result.encoded_transaction,
+      }),
+      });
+
+
+      resultContainer.innerHTML = `
+        <p>Success: ${result.message}</p>
+        <textarea id="encoded-transaction" rows="10" cols="50" readonly>${result.result.encoded_transaction}</textarea>
+        <p>Mint: ${result.result.mint}</p>
+      `;
+    } else {
+      console.error("Error:", result.message);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }

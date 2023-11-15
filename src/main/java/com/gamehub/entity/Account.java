@@ -1,13 +1,12 @@
 package com.gamehub.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,18 +20,15 @@ public class Account {
 
     private String password;
 
-    private String avatar;
-
-    private String firstname;
-
-    private String lastname;
-
     private String fullname;
 
-    private String phone;
+//    private Double exp;
 
-    private Double exp;
+    @OneToMany(mappedBy = "account" ,fetch = FetchType.EAGER)
+    private List<Authority> authorities;
 
-    @OneToMany(mappedBy = "account")
-   private List<Wallet> wallet;
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

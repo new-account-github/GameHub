@@ -12,18 +12,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table
-public class NFT {
+public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "idrole")
+    private Roles role;
 
-    private String mint;
-
-    private Boolean active;
-
-    private int ranks;
-
-    private String encoded_transaction;
+    @ManyToOne
+    @JoinColumn(name= "idaccount")
+    private Account account;
 }
