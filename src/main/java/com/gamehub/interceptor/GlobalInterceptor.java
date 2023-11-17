@@ -20,8 +20,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
         String remoteUser = request.getRemoteUser();
-        Optional<Account> account = accountService.findByUsername(remoteUser);
-        String fullname = account.get().getFullname();
+        String fullname = accountService.getFullNameByUserName(remoteUser);
         if (modelAndView != null) {
             if (remoteUser != null && (request.isUserInRole("ADMIN") || request.isUserInRole("STAFF"))) {
                 modelAndView.addObject("isAuthenticated", true);

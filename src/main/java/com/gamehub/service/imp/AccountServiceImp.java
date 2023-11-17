@@ -25,4 +25,9 @@ public class AccountServiceImp implements AccountService {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         return accountRepository.save(account);
     }
+
+    @Override
+    public String getFullNameByUserName(String username) {
+        return accountRepository.getFullNameByUserName(username);
+    }
 }

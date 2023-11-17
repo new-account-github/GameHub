@@ -13,6 +13,8 @@ async function submitForm(event) {
   var myHeaders = new Headers();
   myHeaders.append("x-api-key", "0Bt3GbCL2ul_fOVH");
 
+  var private_key = "4FD6moh65ACxDv8cjLz8LVUSaX5ywij8av8iw2nr4RD22zm3y38isg6f62gRDKKLsfbTUc9i3QQuJiLMx1soGTwC";
+
   var formdata = new FormData();
   formdata.append("network", "devnet");
   formdata.append(
