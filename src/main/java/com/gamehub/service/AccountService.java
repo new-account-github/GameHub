@@ -9,4 +9,6 @@ public interface AccountService {
     Optional<Account> findByUsername(String username) throws NoSuchElementException;
 
     Account create(Account account);
+
+    String getFullNameByUserName(String username);
 }
