@@ -1,15 +1,18 @@
 
+const loadingElement = document.getElementById("loading");
+
 async function tranfer() {
+  showLoadingBox(3000);
   var myHeaders = new Headers();
   myHeaders.append("x-api-key", "dSnKuP1zRWaJQur7");
   myHeaders.append("Content-Type", "application/json");
   var raw = JSON.stringify({
     "network": "devnet",
     "token_address": "DapNSkcjiV2WnQEGtkrNk6tSTW7qPvSbsNsWUKAF3aqM",
-    "from_address": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ",
-    "to_address": "2vtr8kmgPFvYgDqhVCx1huhTJnJuvyT4w2ZbzHYYmkLH",
+    "from_address": "2vtr8kmgPFvYgDqhVCx1huhTJnJuvyT4w2ZbzHYYmkLH",
+    "to_address": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ",
     "transfer_authority": true,
-    "fee_payer": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ"
+    "fee_payer": "2vtr8kmgPFvYgDqhVCx1huhTJnJuvyT4w2ZbzHYYmkLH"
   });
 
   var requestOptions = {
@@ -20,10 +23,9 @@ async function tranfer() {
   };
 
   try {
-    const response = await fetch("https://api.shyft.to/sol/v1/nft/transfer_detach", requestOptions)
+    await fetch("https://api.shyft.to/sol/v1/nft/transfer_detach", requestOptions)
       .then(response => response.json())
       .then(result => {
-
         console.log(result.result.encoded_transaction)
         signTransaction(result.result.encoded_transaction)
       })
@@ -40,7 +42,7 @@ async function signTransaction(encode) {
   var raw = JSON.stringify({
     "network": "devnet",
     "private_keys": [
-      "4FD6moh65ACxDv8cjLz8LVUSaX5ywij8av8iw2nr4RD22zm3y38isg6f62gRDKKLsfbTUc9i3QQuJiLMx1soGTwC"
+      "3cTvP6RAEmnFQJVDrrZFwAXoiyNVyofqpPPqi5XHf5bYWwNzmu8gwdUcQ9BtL1Vj9BhkrZnK4LLDvFpw5Tr3ohPF"
     ],
     "encoded_transaction": encode
   });
@@ -56,4 +58,13 @@ async function signTransaction(encode) {
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
+}
+
+function showLoadingBox(time){
+  loadingElement.style.display="block";
+  setTimeout(hideLoadingBox, time);
+}
+function hideLoadingBox(){
+  loadingElement.style.display="none";
+  window.location.href = "/wallet";
 }

@@ -49,14 +49,14 @@ body{
     color: white;
     font-size: 3rem;
     position: absolute;
-    bottom: 12rem;
+    top: 26rem;
     left: 6rem;
 }
 .banner-content{
     width: 60%;
     font-size: 1rem;
     left: 6rem;
-    bottom: 6rem;
+    top: 32rem;
     position: absolute;
 }
 /*===================body-2================*/
@@ -158,6 +158,10 @@ body{
     position: absolute;
     top: 340px;
     margin-top: 2rem;
+    display: none;
+    transition: 1s;
+    width: 80%;
+    left: 10%;
 }
 .g-title{
     font-size: 2rem;

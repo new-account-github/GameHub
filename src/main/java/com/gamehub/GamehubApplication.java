@@ -14,11 +14,11 @@ public class GamehubApplication {
 		SpringApplication.run(GamehubApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner run(AccountService accountService){
-		return args ->{
-			accountService.create(new Account("cuong","123"));
-			accountService.create(new Account("dung","123"));
-		};
-	};
+	// @Bean
+	// CommandLineRunner run(AccountService accountService){
+	// 	return args ->{
+	// 		accountService.create(new Account("cuong","123"));
+	// 		accountService.create(new Account("dung","123"));
+	// 	};
+	// };
 }
