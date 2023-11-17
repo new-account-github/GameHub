@@ -19,7 +19,8 @@ public class NFT {
 
     private String name;
 
-    private String mint;
+    @Column(name = "token_address")
+    private String token;
 
     private Boolean active;
 

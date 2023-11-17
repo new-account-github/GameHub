@@ -37,7 +37,7 @@ public class SecurityConfig {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/wallet").authenticated()
-                        .requestMatchers("/admin").hasAuthority("ADMIN")
+//                        .requestMatchers("/admin").hasAnyAuthority("ADMIN")
                         .anyRequest().permitAll())
                 .formLogin(login -> login
                         .loginPage("/login")

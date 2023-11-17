@@ -24,14 +24,14 @@ public class GlobalInterceptor implements HandlerInterceptor {
         if (modelAndView != null) {
             if (remoteUser != null && (request.isUserInRole("ADMIN") || request.isUserInRole("STAFF"))) {
                 modelAndView.addObject("isAuthenticated", true);
-                modelAndView.addObject("isAdminOrStaff", true);
+                modelAndView.addObject("isAdmin", true);
                 modelAndView.addObject("fullname", fullname);
             } else if (remoteUser != null) {
                 modelAndView.addObject("fullname", fullname);
                 modelAndView.addObject("isAuthenticated", true);
             } else {
                 modelAndView.addObject("isAuthenticated", false);
-                modelAndView.addObject("isAdminOrStaff", false);
+                modelAndView.addObject("isAdmin", false);
             }
         }
     }
