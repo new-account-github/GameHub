@@ -1,3 +1,7 @@
+﻿create database Game_Hub
+
+use Game_Hub
+
 create table NFT(
 	id bigint identity primary key,
 	name varchar(255),
@@ -7,16 +11,12 @@ create table NFT(
 	active bit
 );
 
-drop table authority
-
-select * from account
-
 
 create table Account(
 	id bigint identity primary key,
 	username varchar(255),
 	password varchar(255),
-	fullname varchar(255),
+	fullname nvarchar(255),
 );
  
 create table Roles(
@@ -24,7 +24,7 @@ create table Roles(
 	name nvarchar(255)
 );
 
-create table Authority(
+create  table Authority(
 	id bigint identity primary key,
 	idaccount bigint foreign key references Account(id),
 	idrole bigint foreign key references Roles(id)
@@ -36,7 +36,15 @@ values
 ('STAFF'),
 ('USER');
 
+insert into Account(username, password, fullname)
+values
+('ADMIN','123',N'Hoàng Mạnh Dũng'),
+('Dung','123',N'Hoàng Mạnh Dũng')
+
 insert into Authority(idaccount,idrole)
 values
 (1,1),
 (2,2);
+
+drop table Authority;
+drop table Account;
