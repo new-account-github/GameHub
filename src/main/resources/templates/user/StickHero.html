@@ -6,6 +6,8 @@
 	<meta name="viewport" , content="width=device-width, initial-scale=1.0">
 	<title>Flappy Bird</title>
 	<link rel="stylesheet" href="/css/reset.css">
+
+	<link rel="stylesheet" href="/css/loading.css">
 	<link rel="stylesheet" href="/css/StickHero.css">
 </head>
 
@@ -22,12 +24,19 @@
 				<img class="cup" src="/image/serverstatic/cup.gif"></img>
 				<div class="score" id="score-2">120</div>
 				<button class="btn btn-restart" id="restartButton">Restart</button>
-				<button class="btn-reward" id="rewardButton">Reward</button>
+				<button th:if="${isAuthenticated}" class="btn-reward" id="rewardButton"
+					th:onclick="tranfer()">Reward</button>
 				<button class="btn btn-quit" id="quitButton">Quit</button>
 			</div>
 		</div>
 	</div>
+	<div class="loading" id="loading">
+		<div class="loading-box"></div>
+	</div>
+
 	<script src="/js/StickHero.js"></script>
+	<script src="/js/Reward.js"></script>
+	<script src="/js/Transfer.js"></script>
 </body>
 
 </html>

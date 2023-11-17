@@ -66,6 +66,7 @@ const quitButton = document.getElementById("quitButton");
 const rewardButton = document.getElementById("rewardButton");
 const scoreElement = document.getElementById("score");
 const scoreElement2 = document.getElementById("score-2");
+const loading = document.getElementById("loading");
 
 // Initialize layout
 resetGame();

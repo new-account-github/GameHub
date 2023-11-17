@@ -21,9 +21,9 @@
         </ul>
     </div>
     <div class="token">
-        <div class="user-info">
+        <div class="user-info" th:with="principal=${#authentication.principal}">
             <div class="avatar"></div>
-            <div class="name">Hoàng Dũng</div>
+            <div class="name" th:text="${principal.username}">Hoàng Dũng</div>
         </div>
         <div class="token-info">
             <div class="info">
