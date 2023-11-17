@@ -26,6 +26,8 @@
 				<button class="btn btn-restart" id="restartButton">Restart</button>
 				<button th:if="${isAuthenticated}" class="btn-reward" id="rewardButton"
 					th:onclick="tranfer()">Reward</button>
+				<button th:unless="${isAuthenticated}" class="btn-reward" id="rewardButton"
+					th:onclick="cfLogin()">Reward</button>
 				<button class="btn btn-quit" id="quitButton">Quit</button>
 			</div>
 		</div>

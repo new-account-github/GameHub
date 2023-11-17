@@ -284,6 +284,11 @@ function animate(timestamp) {
       if (heroY > maxHeroY) {
         restartForm.style.display = "flex";
         scoreElement2.innerText = score;
+        if(score<3){
+          rewardButton.style.display="none";
+        }else{
+          rewardButton.style.display="block";
+        }
         return;
       }
       break;
