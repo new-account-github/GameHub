@@ -15,13 +15,14 @@
 <body>
     <div class="nav">
         <div class="logo">GameHub</div>
+		<div th:attr="data-isAuthenticated=${isAuthenticated}"></div>
         <th:block th:if="${isAuthenticated}">
             <ul class="nav-list">
                 <li class="nav-item"><a th:href="@{|/home|}">Games</a></li>
                 <li class="nav-item"><a th:href="@{|/wallet|}">Wallet</a></li>
                 <li class="nav-item"><a href="#">MarketPlace</a></li>
                 <li class="nav-item"><a href="#">Account</a></li>
-                <li class="nav-item"><a th:href="@{|/logout|}">Logout</a></li>
+                <li class="nav-item"><a th:href="@{|/logout|}" onclick="setAuFalse()">Logout</a></li>
                 <th:block th:if="${isAdmin}">
                     <li class="nav-item"><a th:href="@{|/admin|}">Admin</a></li>
                 </th:block>

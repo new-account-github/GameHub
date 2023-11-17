@@ -24,8 +24,8 @@
 				<img class="cup" src="/image/serverstatic/cup.gif"></img>
 				<div class="score" id="score-2">120</div>
 				<button class="btn btn-restart" id="restartButton">Restart</button>
-				<button class="btn-reward" id="rewardButton"
-					th:onclick="cfLogin()">Reward</button>
+				<button class="btn-reward" id="rewardButton" th:onclick="cfLogin()">Reward</button>
+				<div th:attr="data-isAuthenticated=${isAuthenticated}"></div>
 				<button class="btn btn-quit" id="quitButton">Quit</button>
 			</div>
 		</div>
@@ -33,9 +33,9 @@
 	<div class="loading" id="loading">
 		<div class="loading-box"></div>
 	</div>
-
 	<script src="/js/StickHero.js"></script>
 	<script src="/js/Transfer.js"></script>
+
 </body>
 
 </html>

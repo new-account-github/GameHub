@@ -2,9 +2,10 @@ const loadingElement = document.getElementById("loading");
 
 
 function cfLogin() {
-  isAuthenticated = /*[[${isAuthenticated}]]*/ false;
-  console.log(isAuthenticated);
-  if (isAuthenticated) {
+  
+  var isAuthenticated = localStorage.getItem('isAuthenticated');
+  console.log(isAuthenticated)
+  if (isAuthenticated==='true') {
     tranfer();
 
   } else {
