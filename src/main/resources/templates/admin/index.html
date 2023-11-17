@@ -1,24 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin</title>
+    <!-- Include Bootstrap CSS link here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body>
-<h1>Create NFT</h1>
-    <form id="nft" onsubmit="submitForm(event)">
-        <input type="text" id="wallet-address" placeholder="Your Wallet Address">
-        <input type="text" id="name-nft" placeholder="NFT Name">
-        <input type="text" id="symbol-nft" placeholder="NFT Symbol">
-        <input type="text" id="description" placeholder="NFT Description">
-        <input type="number" id="max-supply" min="1" placeholder="Number">
-        <input type="number" id="royalty" min="1" placeholder="Royalty">
-        <input type="file" id="file-nft" placeholder="Image">
-        <button type="submit">submit</button>
-    </form>
 
-    <div id="result-container"></div>
+<body class="container mt-5" style="  font-family: Times New Roman, Times, serif;">
+<div class="card col-md-9 offset-md-2" style="padding: 15px;">
+    <div class="card-body">
 
-    <script src="js/nft.js"></script>
+        <h1 class="card-title mb-2 text-center text-primary">Create NFT</h1>
+        <div id="result-container" class="mb-4 text-center fw-bold"> </div>
+        <form id="nft" onsubmit="submitForm(event)" class="needs-validation" novalidate>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="wallet-address" class="form-label mb-3">Your Wallet Address</label>
+                        <input type="text" class="form-control" id="wallet-address"
+                               placeholder="Your Wallet Address" required>
+                        <div class="invalid-feedback">Please enter your wallet address.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name-nft" class="form-label mb-3">NFT Name</label>
+                        <input type="text" class="form-control" id="name-nft" placeholder="NFT Name" required>
+                        <div class="invalid-feedback">Please enter the NFT name.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="symbol-nft" class="form-label mb-3">NFT Symbol</label>
+                        <input type="text" class="form-control" id="symbol-nft" placeholder="NFT Symbol" required>
+                        <div class="invalid-feedback">Please enter the NFT symbol.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nft-ranks" class="form-label mb-3">NFT Ranks</label>
+                        <select name="nft-ranks" id="nft-ranks" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="description" class="form-label mb-3">NFT Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="NFT Description"
+                               required>
+                        <div class="invalid-feedback">Please enter the NFT description.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="max-supply" class="form-label mb-3">Number</label>
+                        <input type="number" class="form-control" id="max-supply" min="1" placeholder="Number"
+                               required>
+                        <div class="invalid-feedback">Please enter a valid number.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="royalty" class="form-label mb-3">Royalty</label>
+                        <input type="number" class="form-control" id="royalty" min="1" placeholder="Royalty"
+                               required>
+                        <div class="invalid-feedback">Please enter a valid royalty number.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="file-nft" class="form-label mb-3">Image</label>
+                        <input type="file" class="form-control" id="file-nft" placeholder="Image" required>
+                        <div class="invalid-feedback">Please choose an image.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Add more fields here if needed -->
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="card col-md-9 offset-md-2 my-5" style="padding: 15px;" >
+    <table class="table table-hover table-bordered text-center">
+        <thead>
+        <tr>
+            <th scope="col">STT.</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Token Address</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="nft,state : ${list}" >
+            <td th:text="${state.index + 1}"></td>
+            <th scope="row" th:text="${nft.id}"></th>
+            <td th:text="${nft.name}"></td>
+            <td th:text="${nft.token}"></td>
+            <td>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalNFT"  th:attr="onclick=@{|getTokenAddress('${nft.token}')|}">
+                    Delete
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalNFT" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <label for="address">Wallet Address</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Enter wallet address">
+                                </div>
+                                <div class="row">
+                                    <label for="token-address">NFT Address</label>
+                                    <input type="text" class="form-control" id="token-address" readonly>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="deleteNFT()">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<!-- Include Bootstrap JS and Popper.js before your custom scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="js/nft.js"></script>
+
 </body>
+
 </html>

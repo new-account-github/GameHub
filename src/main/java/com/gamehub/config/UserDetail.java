@@ -20,9 +20,11 @@ public class UserDetail implements UserDetails {
         password = account.getPassword();
         String[] role = account.getAuthorities().stream().map(er -> er.getRole().getName()).collect(Collectors.toList())
                 .toArray(new String[0]);
+        System.out.println(role);
         authorities = Arrays.stream(role)
                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r.toUpperCase()))
                 .collect(Collectors.toList());
+        System.out.println(authorities);
     }
 
     @Override
