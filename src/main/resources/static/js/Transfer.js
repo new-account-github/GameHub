@@ -1,5 +1,19 @@
-
 const loadingElement = document.getElementById("loading");
+
+
+function cfLogin() {
+  isAuthenticated = /*[[${isAuthenticated}]]*/ false;
+  console.log(isAuthenticated);
+  if (isAuthenticated) {
+    tranfer();
+
+  } else {
+    var yn = confirm("Do you want to log in to receive rewards?")
+    if (yn == true) {
+      window.open("/login", '_blank')
+    }
+  }
+}
 
 async function tranfer() {
   showLoadingBox(3000);
@@ -60,11 +74,10 @@ async function signTransaction(encode) {
     .catch(error => console.log('error', error));
 }
 
-function showLoadingBox(time){
-  loadingElement.style.display="block";
+function showLoadingBox(time) {
+  loadingElement.style.display = "block";
   setTimeout(hideLoadingBox, time);
 }
-function hideLoadingBox(){
-  loadingElement.style.display="none";
-  window.location.href = "/wallet";
+function hideLoadingBox() {
+  loadingElement.style.display = "none";
 }

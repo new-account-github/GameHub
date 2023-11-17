@@ -1,3 +1,5 @@
+//authen
+var isAuthenticated = /*[[${isAuthenticated}]]*/ false;
 
 // Extend the base functionality of JavaScript
 Array.prototype.last = function () {
@@ -536,3 +538,4 @@ function getTreeY(x, baseHeight, amplitude) {
   const sineBaseY = window.innerHeight - baseHeight;
   return Math.sinus(x) * amplitude + sineBaseY;
 }
+

@@ -5,11 +5,13 @@ var NFTs;
 
 //Check phantom installed
 if (typeof phantomInstalled == 'undefined') {
-    let insPhantom = confirm('Bạn chưa cài đặt tiện ích Phantom trên Google Chrome, bạn có muốn cài ngay không?');
+    let insPhantom = confirm('Bạn chưa cài đặt tiện ích Phantom trên Google Chrome hoặc chưa đăng nhập tài khoản Phantom, bạn có muốn cài ngay không?');
     if (insPhantom) {
         window.open('https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa', '_blank');
+        window.location.href = "/wallet";
+    }else{
+        window.location.href = "/home";
     }
-    window.location.href = "http://localhost:8080/home";
 }
 
 //load page
