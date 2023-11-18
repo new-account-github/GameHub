@@ -4,6 +4,7 @@ import com.gamehub.entity.NFT;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,11 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
+@EnableJpaRepositories
 public interface NFTRepository extends JpaRepository<NFT, Long> {
     @Query("SELECT n FROM NFT n WHERE n.token =?1 ")
     NFT findByToken(String token_address);
 
-    @Query("SELECT n FROM NFT n WHERE n.active = 1")
+    @Query("SELECT n FROM NFT n WHERE n.active = true")
     List<NFT> findByActive();
 
     @Modifying

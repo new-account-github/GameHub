@@ -22,7 +22,7 @@ public class NFT {
     @Column(name = "token_address")
     private String token;
 
-    private Boolean active;
+    private boolean active;
 
     private int ranks;
 

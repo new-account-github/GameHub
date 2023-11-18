@@ -70,6 +70,7 @@ async function submitForm(event) {
         <p>Success: ${result.message}</p>
         <p>Token Address: ${result.result.mint}</p>
       `;
+      alert("Create Success")
     } else {
       console.error("Error:", result.message);
     }
@@ -150,7 +151,7 @@ async function deleteNFT() {
           token: tokenAddress,
         }),
       });
-      alert("Success");
+      alert("Delete Success");
     }
 
     console.log(result);
