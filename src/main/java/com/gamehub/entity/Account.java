@@ -27,8 +27,4 @@ public class Account {
     @OneToMany(mappedBy = "account" ,fetch = FetchType.EAGER)
     private List<Authority> authorities;
 
-    public Account(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 }

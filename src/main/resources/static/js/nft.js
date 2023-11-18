@@ -58,7 +58,7 @@ async function submitForm(event) {
         },
         body: JSON.stringify({
           name: nftName,
-          token_address: result.result.mint,
+          token: result.result.mint,
           encoded_transaction: result.result.encoded_transaction,
           ranks: ranks,
       }),

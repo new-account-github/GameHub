@@ -30,4 +30,16 @@ public class AccountServiceImp implements AccountService {
     public String getFullNameByUserName(String username) {
         return accountRepository.getFullNameByUserName(username);
     }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return accountRepository.existsByUsername(username);
+    }
+    @Override
+    public Account registerAccount(Account account) {
+        account.setUsername(account.getUsername());
+        account.setFullname(account.getFullname());
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        return accountRepository.save(account);
+    }
 }

@@ -11,4 +11,8 @@ public interface AccountService {
     Account create(Account account);
 
     String getFullNameByUserName(String username);
+
+    boolean existsByUsername(String username);
+
+    Account registerAccount(Account account);
 }

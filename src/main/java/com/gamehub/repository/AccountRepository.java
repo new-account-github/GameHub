@@ -13,4 +13,5 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     @Query("SELECT a.fullname FROM Account a WHERE a.username =?1")
     String getFullNameByUserName(String username);
+    boolean existsByUsername(String username);
 }
