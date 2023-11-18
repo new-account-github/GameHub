@@ -15,7 +15,7 @@ public interface NFTRepository extends JpaRepository<NFT, Long> {
     @Query("SELECT n FROM NFT n WHERE n.token =?1 ")
     NFT findByToken(String token_address);
 
-    @Query("SELECT n FROM NFT n WHERE n.active = 1")
+    @Query("SELECT n FROM NFT n WHERE n.active = true")
     List<NFT> findByActive();
 
     @Modifying

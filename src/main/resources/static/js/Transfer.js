@@ -59,9 +59,10 @@ async function tranfer(nft, wallet) {
     await fetch("https://api.shyft.to/sol/v1/nft/transfer_detach", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
-        signTransaction(result.result.encoded_transaction)
-        hideLoadingBox()
+        console.log(result);
+        signTransaction(result.result.encoded_transaction);
+        setActiveNft();
+        hideLoadingBox();
         var gotoWallet = confirm("The reward has been received, do you want to go to your wallet to check the reward? ")
         if (gotoWallet) {
           window.location.href="/wallet";
