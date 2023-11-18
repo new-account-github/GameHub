@@ -1,13 +1,31 @@
+var nft;
+var wallet;
+
 const loadingElement = document.getElementById("loading");
 
+window.addEventListener('DOMContentLoaded', async () => {
+  await connect();
+});
 
-function cfLogin() {
-  
+//Connect to Phantom
+async function connect() {
+  try {
+    await window.phantom.solana.connect();
+    wallet = window.phantom.solana.publicKey.toBase58();
+  } catch (error) {
+    window.location.href = "http://localhost:8080/home";
+  }
+}
+
+async function cfLogin() {
   var isAuthenticated = localStorage.getItem('isAuthenticated');
   console.log(isAuthenticated)
-  if (isAuthenticated==='true') {
-    tranfer();
-
+  if (isAuthenticated === 'true') {
+    var loginPhantom=confirm("Make sure you have logged in to the correct account to receive rewards on Phantom. Continue to receive rewards?")
+    if(loginPhantom){
+      await randomNftAjax();
+      tranfer(nft, wallet);
+    }
   } else {
     var yn = confirm("Do you want to log in to receive rewards?")
     if (yn == true) {
@@ -16,18 +34,18 @@ function cfLogin() {
   }
 }
 
-async function tranfer() {
-  showLoadingBox(3000);
+async function tranfer(nft, wallet) {
+  showLoadingBox();
   var myHeaders = new Headers();
   myHeaders.append("x-api-key", "dSnKuP1zRWaJQur7");
   myHeaders.append("Content-Type", "application/json");
   var raw = JSON.stringify({
     "network": "devnet",
-    "token_address": "DapNSkcjiV2WnQEGtkrNk6tSTW7qPvSbsNsWUKAF3aqM",
-    "from_address": "2vtr8kmgPFvYgDqhVCx1huhTJnJuvyT4w2ZbzHYYmkLH",
-    "to_address": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ",
+    "token_address": nft,
+    "from_address": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ",
+    "to_address": wallet,
     "transfer_authority": true,
-    "fee_payer": "2vtr8kmgPFvYgDqhVCx1huhTJnJuvyT4w2ZbzHYYmkLH"
+    "fee_payer": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ"
   });
 
   var requestOptions = {
@@ -41,13 +59,48 @@ async function tranfer() {
     await fetch("https://api.shyft.to/sol/v1/nft/transfer_detach", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result.result.encoded_transaction)
+        console.log(result)
         signTransaction(result.result.encoded_transaction)
+        hideLoadingBox()
+        var gotoWallet = confirm("The reward has been received, do you want to go to your wallet to check the reward? ")
+        if (gotoWallet) {
+          window.location.href="/wallet";
+        } else {
+          rewardButton.style.display("none");
+        }
       })
       .catch(error => console.log('error', error));
   } catch (error) {
     console.error('Lỗi trong quá trình thực hiện yêu cầu:', error);
   }
+}
+
+async function randomNftAjax() {
+  await $.ajax({
+    type: "GET",
+    url: "/randomnft", // Thay thế bằng đường dẫn của controller của bạn
+    success: function (data) {
+      nft = getCookie("adresstoken");
+    },
+    error: function (error) {
+      console.log("Lỗi khi gọi controller: " + error);
+    }
+  });
+}
+
+// Định nghĩa hàm getCookie
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for (var i = 0; i < cookieArray.length; i++) {
+    var cookie = cookieArray[i].trim();
+    if (cookie.indexOf(name) == 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null;
 }
 
 async function signTransaction(encode) {
@@ -57,7 +110,7 @@ async function signTransaction(encode) {
   var raw = JSON.stringify({
     "network": "devnet",
     "private_keys": [
-      "3cTvP6RAEmnFQJVDrrZFwAXoiyNVyofqpPPqi5XHf5bYWwNzmu8gwdUcQ9BtL1Vj9BhkrZnK4LLDvFpw5Tr3ohPF"
+      "4FD6moh65ACxDv8cjLz8LVUSaX5ywij8av8iw2nr4RD22zm3y38isg6f62gRDKKLsfbTUc9i3QQuJiLMx1soGTwC"
     ],
     "encoded_transaction": encode
   });
@@ -75,9 +128,8 @@ async function signTransaction(encode) {
     .catch(error => console.log('error', error));
 }
 
-function showLoadingBox(time) {
+function showLoadingBox() {
   loadingElement.style.display = "block";
-  setTimeout(hideLoadingBox, time);
 }
 function hideLoadingBox() {
   loadingElement.style.display = "none";

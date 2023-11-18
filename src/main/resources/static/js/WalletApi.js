@@ -74,7 +74,7 @@ async function getNFTs() {
             .then(response => response.json())
             .then(result => {
                 NFTs = result.result.nfts;
-                console.log(NFTs )
+                console.log(result.result )
                 var nftsElement = document.querySelector(".list-nft");
                 if(NFTs.length == 0){
 					nftsElement.innerHTML +=`<h4 style="margin-top:40px">You don't own any NFTs at GameHub yet</h4>`
