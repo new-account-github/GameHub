@@ -70,6 +70,7 @@ async function submitForm(event) {
         <p>Success: ${result.message}</p>
         <p>Token Address: ${result.result.mint}</p>
       `;
+      alert("Create Success")
     } else {
       console.error("Error:", result.message);
     }
@@ -99,7 +100,7 @@ async function signTransaction(encode) {
   };
 
   try {
-    const response = await fetch("https://api.shyft.to/sol/v1/wallet/sign_transaction", requestOptions);
+const response = await fetch("https://api.shyft.to/sol/v1/wallet/sign_transaction", requestOptions);
     const result = await response.text();
     console.log(result);
   } catch (error) {
@@ -150,7 +151,7 @@ async function deleteNFT() {
           token: tokenAddress,
         }),
       });
-      alert("Success");
+      alert("Delete Success");
     }
 
     console.log(result);
