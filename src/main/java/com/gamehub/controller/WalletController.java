@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gamehub.entity.NFT;
 import com.gamehub.service.NFTService;
@@ -42,11 +41,15 @@ public class WalletController {
 		response.addCookie(myCookie);
 	}
 
-	@PostMapping("/setacticenft")
-    public void handlePostRequest(@RequestBody String data) {
-		NFT nft = nftService.findByToken(data);
-		nftService.updateNFTActiveStatus(nft.getId(), false);
+	@GetMapping("/setactivenft")
+    public void handleAjaxRequest(@RequestParam String token) {
+        NFT nft = nftService.findByToken(token);
+		
+        System.out.println("Received nft: " + nft.getId());
+		nft.setActive(false);
+		nftService.updateNFT(nft);
         // Xử lý dữ liệu ở đây
-        System.out.println("Received data: " + data);
+        System.out.println("Received data: " + token);
     }
+
 }

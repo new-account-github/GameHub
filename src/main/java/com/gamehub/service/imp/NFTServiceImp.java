@@ -44,6 +44,7 @@ public class NFTServiceImp implements NFTService {
     }
 
     @Override
-    public void updateNFTActiveStatus(Long nftid, Boolean active) {
+    public void updateNFT(NFT nft) {
+        nftRepository.save(nft);
     }
 }

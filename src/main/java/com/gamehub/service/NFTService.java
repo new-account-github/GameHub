@@ -13,7 +13,7 @@ public interface NFTService {
 
     List<NFT> getListNFT();
 
-    void updateNFTActiveStatus(Long nftid, Boolean active);
+    void updateNFT(NFT nft);
 
     NFT delete(String token_address);
 }

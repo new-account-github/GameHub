@@ -61,13 +61,13 @@ async function tranfer(nft, wallet) {
       .then(result => {
         console.log(result);
         signTransaction(result.result.encoded_transaction);
-        setActiveNft();
+        setActiveNft(nft);
         hideLoadingBox();
         var gotoWallet = confirm("The reward has been received, do you want to go to your wallet to check the reward? ")
         if (gotoWallet) {
           window.location.href="/wallet";
         } else {
-          rewardButton.style.display("none");
+          rewardButton.style.display="none";
         }
       })
       .catch(error => console.log('error', error));
@@ -128,21 +128,20 @@ async function signTransaction(encode) {
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
-function setActiveNft(){
+async function setActiveNft(nft){
+  var inputData = nft;
 
-  $.ajax({
-    url: '/setacticenft',  // Đổi thành địa chỉ endpoint thực tế của bạn
-    type: 'POST',
-    contentType: 'text/plain',
-    data: nft,
-    success: function(response) {
-      // Xử lý response từ server (nếu cần)
-      console.log('Response:', response);
-    },
-    error: function(error) {
-      console.error('Error:', error);
-    }
+  await $.ajax({
+      type: 'GET',
+      url: '/setactivenft?token='+nft,  // Đường dẫn tới endpoint của controller
+      success: function() {
+          console.log('Data sent successfully');
+      },
+      error: function(error) {
+          console.error('Error sending data: ', error);
+      }
   });
+
 }
 
 
