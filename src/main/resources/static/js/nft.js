@@ -20,8 +20,8 @@ async function submitForm(event) {
   var formdata = new FormData();
   formdata.append("network", "devnet");
   formdata.append(
-    "creator_wallet",walletAddress
-    
+    "creator_wallet", walletAddress
+
   );
   formdata.append("name", nftName);
   formdata.append("symbol", nftSymbol);
@@ -46,13 +46,13 @@ async function submitForm(event) {
   try {
     const response = await fetch("https://api.shyft.to/sol/v2/nft/create", requestOptions);
     const result = await response.json();
-    
+
     if (response.ok) {
       const resultContainer = document.getElementById("result-container");
 
 
-      await fetch("/nft/create",{
-        method : 'POST',
+      await fetch("/nft/create", {
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
@@ -61,10 +61,10 @@ async function submitForm(event) {
           token: result.result.mint,
           encoded_transaction: result.result.encoded_transaction,
           ranks: ranks,
-      }),
+        }),
       });
 
-         await signTransaction(result.result.encoded_transaction);
+      await signTransaction(result.result.encoded_transaction);
 
       resultContainer.innerHTML = `
         <p>Success: ${result.message}</p>
@@ -79,85 +79,86 @@ async function submitForm(event) {
 }
 
 async function signTransaction(encode) {
-    var myHeaders = new Headers();
-    myHeaders.append("x-api-key", "0Bt3GbCL2ul_fOVH");
-    myHeaders.append("Content-Type", "application/json");
+  var myHeaders = new Headers();
+  myHeaders.append("x-api-key", "0Bt3GbCL2ul_fOVH");
+  myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-        "network": "devnet",
-        "private_keys": [
-            "4FD6moh65ACxDv8cjLz8LVUSaX5ywij8av8iw2nr4RD22zm3y38isg6f62gRDKKLsfbTUc9i3QQuJiLMx1soGTwC"
-        ],
-        "encoded_transaction": encode
-    });
+  var raw = JSON.stringify({
+    "network": "devnet",
+    "private_keys": [
+      "4FD6moh65ACxDv8cjLz8LVUSaX5ywij8av8iw2nr4RD22zm3y38isg6f62gRDKKLsfbTUc9i3QQuJiLMx1soGTwC"
+    ],
+    "encoded_transaction": encode
+  });
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
 
-    try {
-        const response = await fetch("https://api.shyft.to/sol/v1/wallet/sign_transaction", requestOptions);
-        const result = await response.text();
-        console.log(result);
-    } catch (error) {
-        console.log('error', error);
-    }
+  try {
+    const response = await fetch("https://api.shyft.to/sol/v1/wallet/sign_transaction", requestOptions);
+    const result = await response.text();
+    console.log(result);
+  } catch (error) {
+    console.log('error', error);
+  }
 }
 
 
 
 async function deleteNFT() {
 
-    const walletAddress = document.getElementById("address").value;
-    const tokenAddress = document.getElementById("token-address").value;
+  const walletAddress = document.getElementById("address").value;
+  const tokenAddress = document.getElementById("token-address").value;
 
-    console.log(walletAddress);
-    console.log(tokenAddress);
+  console.log(walletAddress);
+  console.log(tokenAddress);
 
-    var myHeaders = new Headers();
-    myHeaders.append("x-api-key", "0Bt3GbCL2ul_fOVH");
-    myHeaders.append("Content-Type", "application/json");
+  var myHeaders = new Headers();
+  myHeaders.append("x-api-key", "0Bt3GbCL2ul_fOVH");
+  myHeaders.append("Content-Type", "application/json");
 
-   var raw = JSON.stringify({
-        "network": "devnet",
-        "wallet": walletAddress,
-        "token_address": tokenAddress
-    });
+  var raw = JSON.stringify({
+    "network": "devnet",
+    "wallet": walletAddress,
+    "token_address": tokenAddress
+  });
 
-    var requestOptions = {
+  var requestOptions = {
+    method: 'DELETE',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  try {
+    const response = await fetch("https://api.shyft.to/sol/v1/nft/burn_detach", requestOptions);
+    const result = await response.json();
+
+    if (response.ok) {
+
+      await signTransaction(result.result.encoded_transaction);
+      await fetch("/nft/delete/" + tokenAddress, {
         method: 'DELETE',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    try {
-        const response = await fetch("https://api.shyft.to/sol/v1/nft/burn_detach", requestOptions);
-        const result = await response.json();
-
-        if(response.ok){
-              await fetch("/nft/delete/" + tokenAddress ,{
-                    method : 'DELETE',
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                       token: tokenAddress,
-                    }),
-                  });
-          await signTransaction(result.result.encoded_transaction);
-          alert("Success");
-        }
-
-        console.log(result);
-    } catch (error) {
-        console.log('error', error);
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: tokenAddress,
+        }),
+      });
+      alert("Success");
     }
+
+    console.log(result);
+  } catch (error) {
+    console.log('error', error);
+  }
 }
 
-function getTokenAddress(tokenAddress){
-      document.getElementById("token-address").value = tokenAddress;
+function getTokenAddress(tokenAddress) {
+  document.getElementById("token-address").value = tokenAddress;
 }

@@ -1,4 +1,3 @@
-
 // Extend the base functionality of JavaScript
 Array.prototype.last = function () {
   return this[this.length - 1];
@@ -284,6 +283,11 @@ function animate(timestamp) {
       if (heroY > maxHeroY) {
         restartForm.style.display = "flex";
         scoreElement2.innerText = score;
+        if(score<1){
+          rewardButton.style.display="none";
+        }else{
+          rewardButton.style.display="block";
+        }
         return;
       }
       break;
@@ -531,3 +535,4 @@ function getTreeY(x, baseHeight, amplitude) {
   const sineBaseY = window.innerHeight - baseHeight;
   return Math.sinus(x) * amplitude + sineBaseY;
 }
+
