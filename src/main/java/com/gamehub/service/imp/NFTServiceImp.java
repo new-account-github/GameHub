@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 @Service
 public class NFTServiceImp implements NFTService {
@@ -18,6 +16,15 @@ public class NFTServiceImp implements NFTService {
     @Override
     public NFT create(NFT nft) {
         return nftRepository.save(nft);
+    }
+    @Override
+    public NFT findByToken(String token) {
+        return nftRepository.findByToken(token);
+    }
+
+    @Override
+    public List<NFT> findByActive() {
+        return nftRepository.findByActive();
     }
 
     @Override
@@ -34,5 +41,9 @@ public class NFTServiceImp implements NFTService {
             nftRepository.deleteById(nft.getId());
         }
         return nft;
+    }
+
+    @Override
+    public void updateNFTActiveStatus(Long nftid, Boolean active) {
     }
 }

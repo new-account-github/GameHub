@@ -127,6 +127,23 @@ async function signTransaction(encode) {
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
+function setActiveNft(){
+
+  $.ajax({
+    url: '/setacticenft',  // Đổi thành địa chỉ endpoint thực tế của bạn
+    type: 'POST',
+    contentType: 'text/plain',
+    data: nft,
+    success: function(response) {
+      // Xử lý response từ server (nếu cần)
+      console.log('Response:', response);
+    },
+    error: function(error) {
+      console.error('Error:', error);
+    }
+  });
+}
+
 
 function showLoadingBox() {
   loadingElement.style.display = "block";
