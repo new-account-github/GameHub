@@ -157,6 +157,75 @@ body{
     opacity: 1;
     transform: translateY(0);
 }
+/*------------------Sale form*/
+.sale-container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.sale-form{
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    border-radius: 1rem;
+    position: relative;
+}
+.sf-cancel{
+    font-size: 30px;
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.sf-cancel:hover{
+    cursor: pointer;
+}
+.sf-img{
+    width: 300px;
+    height: 300px;
+    border-radius: 0.4rem;
+    object-fit: cover;
+    border: 2px solid gray;
+    margin: auto;
+    margin-top: 40px;
+}
+.sf-name-nft{
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto 20px auto;
+}
+.sf-price{
+    width: 70%;
+    height: 50px;
+    margin-left: 15%;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    color: black;
+    border: rgb(172, 197, 217) solid 2px;
+}
+.sf-price:focus{
+    border: rgb(172, 197, 217) solid 2px;
+    outline: none;
+}
+.sf-list-btn{
+    width: 80px;
+    height: 40px;
+    color: white;
+    background: linear-gradient(to right, rgb(255, 83, 177), rgb(95, 100, 239));
+    border: none;
+    border-radius: 50px;
+    margin-left: 39%;
+    margin-top: 10px;
+}
 /*------------------footer*/
 .footer{
     height: 1.5rem;

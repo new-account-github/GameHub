@@ -3,13 +3,17 @@ var walletAddress;
 var SOL;
 var NFTs;
 
+var saleContainerElement = document.getElementById('sale-container');
+
+var cancelButton = document.getElementById('sf-cancel');
+
 //Check phantom installed
 if (typeof phantomInstalled == 'undefined') {
     let insPhantom = confirm('Bạn chưa cài đặt tiện ích Phantom trên Google Chrome hoặc chưa đăng nhập tài khoản Phantom, bạn có muốn cài ngay không?');
     if (insPhantom) {
         window.open('https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa', '_blank');
         window.location.href = "/wallet";
-    }else{
+    } else {
         window.location.href = "/home";
     }
 }
@@ -74,20 +78,43 @@ async function getNFTs() {
             .then(response => response.json())
             .then(result => {
                 NFTs = result.result.nfts;
-                console.log(result.result )
+                console.log(result.result)
                 var nftsElement = document.querySelector(".list-nft");
-                if(NFTs.length == 0){
-					nftsElement.innerHTML +=`<h4 style="margin-top:40px">You don't own any NFTs at GameHub yet</h4>`
-				}else{
-					for (let i = 0;i < NFTs.length; i++) {
-                    nftsElement.innerHTML +=`<div class="item">
-                        <img src=${NFTs[i].image_uri} alt=""/>
+                if (NFTs.length == 0) {
+                    nftsElement.innerHTML += `<h4 style="margin-top:40px">You don't own any NFTs at GameHub yet</h4>`
+                } else {
+                    for (let i = 0; i < NFTs.length; i++) {
+                        nftsElement.innerHTML += `<div class="item">
+                        <img src=${NFTs[i].image_uri} alt="" ondblclick="doubleClickNft(${i})"/>
                         <div class="name-nft">${NFTs[i].name}</div>
                     </div>`
+                    }
                 }
-				}
             })
             .catch(error => console.log('error', error));
     }, 1000); // 1000 miligiây = 1 giây
+}
+function cancelSale() {
+    saleContainerElement.style.display = "none";
+}
+
+function doubleClickNft(i) {
+    saleContainerElement.style.display = "flex";
+    saleContainerElement.innerHTML = `
+    <div class="sale-form">
+        <div id="sf-id" style="display: none;">${i}</div>
+        <i class='bx bx-x sf-cancel' onclick="cancelSale()"></i>
+        <img class="sf-img"
+            src=${NFTs[i].image_uri} alt="">
+        <div class="sf-name-nft">${NFTs[i].name}</div>
+        <input type="number" min="0" max="1000000000" class="sf-price" id="sf-price" placeholder="Ask price ?"></input><br>
+        <button onclick="listNft()" class="sf-list-btn">List</button>
+    </div>
+    `;
+}
+function listNft(){ 
+    var price = document.getElementById('sf-price').value;
+    var id = document.getElementById('sf-id').innerText;
+    alert(id)
 }
 
