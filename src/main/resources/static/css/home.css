@@ -1,33 +1,10 @@
-:root{
-    --dark-Violet: rgb(18, 12, 24);
-    --pink:rgb(228, 37, 117);
-}
+
 body{
     background-color: black;
     width: 100vw;
     overflow-x: hidden;
 }
-/*===================nav===================*/
-.nav{
-    width: 100vw;
-    height: 12%;
-    background-color: var(--dark-Violet);
-    padding-left: 5rem;
-    padding-right: 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.logo{
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.nav-list{
-    display: flex;
-}
-.nav-item{
-    margin-right: 2rem;
-}
+
 /*===================body-1================*/
 .body-1{
     height: 530px;
@@ -180,15 +157,4 @@ body{
 }
 .g-btn:hover{
     cursor: pointer;
-}
-/*------------------footer*/
-.footer{
-    height: 1.5rem;
-    width: 100vw;
-    color: white;
-    font-size: 0.5rem;
-    font-weight: bold;
-    text-align: center;
-    background-color: var(--dark-Violet);
-    padding-top: 0.5rem;
 }

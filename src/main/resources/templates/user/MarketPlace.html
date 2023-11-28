@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout-market}">
+
+<head>
+    <title>Market Place</title>
+    <link rel="stylesheet" th:href="@{/css/marketplace.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div class="page-title">NFT Marketplace</div>
+        <div class="content-container">
+            <div class="NFT-container" id="NFT-container">
+
+            </div>
+        </div>
+        <script th:src="@{/js/marketplace.js}"></script>
+    </section>
+</body>
+
+</html>

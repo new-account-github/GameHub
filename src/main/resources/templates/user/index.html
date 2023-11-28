@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,102 +14,89 @@
 </head>
 
 <body>
-    <div class="nav">
-        <div class="logo">GameHub</div>
-		<div th:attr="data-isAuthenticated=${isAuthenticated}"></div>
-        <th:block th:if="${isAuthenticated}">
-            <ul class="nav-list">
-                <li class="nav-item"><a th:href="@{|/home|}">Games</a></li>
-                <li class="nav-item"><a th:href="@{|/wallet|}">Wallet</a></li>
-                <li class="nav-item"><a href="#">MarketPlace</a></li>
-                <li class="nav-item"><a href="#">Account</a></li>
-                <li class="nav-item"><a th:href="@{|/logout|}" onclick="setAuFalse()">Logout</a></li>
-                <th:block th:if="${isAdmin}">
-                    <li class="nav-item"><a th:href="@{|/admin|}">Admin</a></li>
-                </th:block>
-            </ul>
-        </th:block>
-
-        <th:block th:unless="${isAuthenticated}">
-            <ul class="nav-list">
-                <li class="nav-item"><a th:href="@{|/login|}">Login</a></li>
-            </ul>
-        </th:block>
-    </div>
-    <div class="body-1">
-        <div class="banner-hub">
-            <img src="https://media.cdn.magiceden.dev/games/theheist/banner.jpeg" alt="">
-            <div class="banner-title">Game Hub</div>
-            <div class="banner-content">Chào mừng bạn đến với trang web game NFT! Hãy sẵn sàng trải nghiệm cuộc phiêu
-                lưu đầy thú vị, sở hữu tài sản số vô cùng độc đáo và tham gia vào cộng đồng nhiệt huyết của chúng tôi.
-                Chúc bạn có những trải nghiệm tuyệt vời và thành công trong thế giới game NFT!</div>
+    <section layout:fragment="content">
+        <div class="content-container">
+            <div class="body-1">
+                <div class="banner-hub">
+                    <img src="https://media.cdn.magiceden.dev/games/theheist/banner.jpeg" alt="">
+                    <div class="banner-title">Game Hub</div>
+                    <div class="banner-content">Chào mừng bạn đến với trang web game NFT! Hãy sẵn sàng trải nghiệm cuộc
+                        phiêu
+                        lưu đầy thú vị, sở hữu tài sản số vô cùng độc đáo và tham gia vào cộng đồng nhiệt huyết của chúng
+                        tôi.
+                        Chúc bạn có những trải nghiệm tuyệt vời và thành công trong thế giới game NFT!</div>
+                </div>
+            </div>
+            <div class="body-2">
+                <div class="container">
+                    <div class="banner">
+                        <!-- Items -->
+                        <div class="list-item">
+                            <div class="ban-item item-active">
+                                <img class="g-img" src="image/serverstatic/StickHero.png " alt="">
+                            </div>
+                            <div class="ban-item semi-active">
+                                <img class="g-img" src="https://media.cdn.magiceden.dev/games/rogue_nation/banner.png"
+                                    alt="">
+                            </div>
+                            <div class="ban-item">
+                                <img class="g-img" src="https://media.cdn.magiceden.dev/games/synergy_land/banner.png"
+                                    alt="">
+                            </div>
+                            <div class="ban-item">
+                                <img class="g-img" src="https://media.cdn.magiceden.dev/games/rogue_nation/banner.png"
+                                    alt="">
+                            </div>
+                        </div>
+                        <!-- next prev button-->
+                        <div class="ban-btn">
+                            <button id="prev"><</button>
+                            <button id="next">></button>
+                        </div>
+                        <!-- dots -->
+                        <div class="dots">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </div>
+                    </div>
+                    <div class="body-game" id="g1">
+                        <div class="g-title">Stick Hero</div>
+                        <div class="g-content">Stick Hero is a free-to-play (F2P) Players create and collect unique
+                            characters,
+                            pets, weapons, and more to take on difficult dungeons, raids, and other players!</div>
+                        <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
+                    </div>
+                    <div class="body-game" id="g2">
+                        <div class="g-title">Rogue Nation</div>
+                        <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite
+                            Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take
+                            on
+                            difficult dungeons, raids, and other players!</div>
+                        <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
+                    </div>
+                    <div class="body-game" id="g3">
+                        <div class="g-title">Rogue Nation</div>
+                        <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite
+                            Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take
+                            on
+                            difficult dungeons, raids, and other players!</div>
+                        <a class="g-btn" href="/GameInfo">Explore Game</a>
+                    </div>
+                    <div class="body-game" id="g4">
+                        <div class="g-title">Rogue Nation</div>
+                        <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite
+                            Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take
+                            on
+                            difficult dungeons, raids, and other players!</div>
+                        <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
+                    </div>
+                </div>
+            </div>
+            <script src="js/home.js"></script>
         </div>
-    </div>
-    <div class="body-2">
-        <div class="container">
-            <div class="banner">
-                <!-- Items -->
-                <div class="list-item">
-                    <div class="ban-item item-active">
-                        <img class="g-img" src="image/serverstatic/StickHero.png " alt="">
-                    </div>
-                    <div class="ban-item semi-active">
-                        <img class="g-img" src="https://media.cdn.magiceden.dev/games/rogue_nation/banner.png" alt="">
-                    </div>
-                    <div class="ban-item">
-                        <img class="g-img" src="https://media.cdn.magiceden.dev/games/synergy_land/banner.png" alt="">
-                    </div>
-                    <div class="ban-item">
-                        <img class="g-img" src="https://media.cdn.magiceden.dev/games/rogue_nation/banner.png" alt="">
-                    </div>
-                </div>
-                <!-- next prev button-->
-                <div class="ban-btn">
-                    <button id="prev">< </button>
-                    <button id="next">></button>
-                </div>
-                <!-- dots -->
-                <div class="dots">
-                    <li class="active"></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </div>
-            </div>
-            <div class="body-game" id="g1">
-                <div class="g-title">Stick Hero</div>
-                <div class="g-content">Stick Hero is a free-to-play (F2P) Players create and collect unique characters,
-                    pets, weapons, and more to take on difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
-            </div>
-            <div class="body-game" id="g2">
-                <div class="g-title">Rogue Nation</div>
-                <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite
-                    Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on
-                    difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
-            </div>
-            <div class="body-game" id="g3">
-                <div class="g-title">Rogue Nation</div>
-                <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite
-                    Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on
-                    difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" href="/GameInfo">Explore Game</a>
-            </div>
-            <div class="body-game" id="g4">
-                <div class="g-title">Rogue Nation</div>
-                <div class="g-content">Rogue Nation is a free-to-play (F2P) mobile-first cross-platform Rogue-lite
-                    Action RPG (ARPG). Players create and collect unique characters, pets, weapons, and more to take on
-                    difficult dungeons, raids, and other players!</div>
-                <a class="g-btn" th:href="@{|/GameInfo|}">Explore Game</a>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        Create by @HoangMDung
-    </div>
-
-    <script src="js/home.js"></script>
+    </section>
 </body>
 
 </html>

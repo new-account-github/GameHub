@@ -1,0 +1,122 @@
+body{
+    background-color: var(--dark-Violet);
+}
+.page-title{
+    font-size: 40px;
+    position: absolute;
+    top: 50px;
+    left: 400px;
+    color:  var(--phantom);
+    font-weight: bold;
+}
+.content-container{
+    display: grid;
+    place-items: center;
+    margin-inline: 1.5rem;
+    padding-block: 1.5rem;
+    border-radius: 2rem;
+    height: 100%;
+    overflow: auto;
+    background-color: white;
+}
+.NFT-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+.NFT-article{
+    position: relative;
+    overflow: hidden;
+}
+.NFT-article:hover .NFT-data{
+    animation: show-data .5s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+.NFT-article:hover{
+    animation: remove-overflow 1s forwards;
+}
+.NFT-article:not(:hover){
+    animation: show-overflow 1s forwards;
+}
+.NFT-article:not(:hover) .NFT-data{
+    animation: remove-data .3s forwards;
+}
+.NFT-img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    border: dashed 2px var(--dark-Violet);
+}
+.NFT-data{
+    width: 170px;
+    background-color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -9rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    opacity: 0;
+    transition: opacity .3s .3s;
+    z-index: 2;
+}
+.NFT-title{
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+.NFT-price{
+    display: block;
+    font-size: small;
+    color: black;
+    margin-bottom: 0.25rem;
+}
+.NFT-btn{
+    text-decoration: none;
+    color: black;
+    font-weight:700;
+}
+.NFT-btn:hover{
+    text-decoration: underline;
+}
+
+@keyframes show-data {
+    50%{
+        transform: translateY(-9rem);
+    }
+    100%{
+        transform: translateY(-5rem);
+    }
+}
+
+@keyframes remove-overflow {
+    to{
+        overflow: initial;
+    }
+}
+@keyframes remove-data {
+    0%{
+        transform: translateY(-5rem);
+    }
+    50%{
+        transform: translateY(-9rem);
+    }
+    100%{
+        transform: translateY(.5rem);
+    }
+}
+
+@keyframes show-overflow {
+    0%{
+        overflow: initial;
+        pointer-events: none;
+    }
+    50%{
+        overflow: hidden;
+    }
+}

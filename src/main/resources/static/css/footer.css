@@ -1,0 +1,12 @@
+/*------------------footer*/
+.footer{
+    height: 4vh;
+    width: 100vw;
+    color: white;
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--dark-Violet);
+    padding-top: 0.7rem;
+    margin-top: auto;
+}

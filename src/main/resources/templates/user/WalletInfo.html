@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +8,7 @@
     <title>NFT</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/WalletInfo.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -14,45 +16,37 @@
 </head>
 
 <body>
-    <div class="nav">
-        <img src="image/serverstatic/logo.png" class="logo"></img>
-        <ul class="nav-list">
-            <li class="nav-item"><a href="/home">Games</a></li>
-            <li class="nav-item"><a href="/wallet">Wallet</a></li>
-            <li class="nav-item"><a href="#">MarketPlace</a></li>
-            <li class="nav-item"><a href="#">Account</a></li>
-        </ul>
-    </div>
-    <div class="token">
-        <div class="user-info" th:with="principal=${#authentication.principal}">
-            <div class="avatar"></div>
-            <div class="name" th:text="${principal.username}">Hoàng Dũng</div>
-        </div>
-        <div class="token-info">
-            <div class="info">
-                <div class="title">Solana</div>
-                <div class="num-token" th:text="${SOL}">5.000</div>
-                <div class="unit">SOL</div>
+    <section layout:fragment="content">
+        <div class="content-container">
+            <div class="token">
+                <div class="user-info" th:with="principal=${#authentication.principal}">
+                    <div class="avatar"></div>
+                    <div class="name" th:text="${principal.username}">Hoàng Dũng</div>
+                </div>
+                <div class="token-info">
+                    <div class="info">
+                        <div class="title">Solana</div>
+                        <div class="num-token" th:text="${SOL}">5.000</div>
+                        <div class="unit">SOL</div>
+                    </div>
+                    <div class="logo-solana"></div>
+                </div>
             </div>
-            <div class="logo-solana"></div>
+            <div class="nft">
+                <div class="title-nft">Your NFT on GameHub</div>
+                <div class="list-nft">
+
+                </div>
+            </div>
+            <div class="sale-container" id="sale-container">
+
+            </div>
+            <script src="js/WalletApi.js"></script>
         </div>
-    </div>
-    <div class="nft">
-        <div class="title-nft">Your NFT on GameHub</div>
-        <div class="list-nft">
-
+        <div class="loading" id="loading">
+            <div class="loading-box"></div>
         </div>
-    </div>
-    <div class="sale-container" id="sale-container">
-        
-    </div>
-
-    <div class="footer">
-        Create by @HoangMDung
-    </div>
-
-
-    <script src="js/WalletApi.js"></script>
+    </section>
 </body>
 
 </html>

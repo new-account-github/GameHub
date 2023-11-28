@@ -1,0 +1,26 @@
+:root{
+    --dark-Violet: rgb(18, 12, 24);
+    --pink:rgb(228, 37, 117);
+    --phantom:rgb(171, 159, 242);
+}
+/*===================nav===================*/
+.nav{
+    width: 100vw;
+    height: 12vh;
+    background-color: var(--dark-Violet);
+    padding-left: 5rem;
+    padding-right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.nav-list{
+    display: flex;
+}
+.nav-item{
+    margin-right: 2rem;
+}

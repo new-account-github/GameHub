@@ -6,40 +6,22 @@
     --semi-green:rgb(28, 255, 200);
     --dark-blue-al:rgba(61, 99, 119, 0.5);
 }
-body{
+
+.content-container{
     width: 100vw;
-    height: 100vh;
+    height: 84vh;
     background-color: black;
+    margin: 0;
+    padding: 0;
 }
-/*===================nav===================*/
-.nav{
-    width: 100vw;
-    height: 12%;
-    background-color: var(--dark-Violet);
-    padding-left: 5rem;
-    padding-right: 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.logo{
-    height:100%;
-    width: auto;
-    object-fit: cover;
-}
-.nav-list{
-    display: flex;
-}
-.nav-item{
-    margin-right: 2rem;
-}
+
 /* -------------body*/
 .token{
     width: 30rem;
     height: 14rem;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 3rem;
+    padding-top: 3rem;
 }
 .user-info{
     display: flex;
@@ -108,7 +90,7 @@ body{
     width: 100%;
 }
 .title-nft{
-    margin-top: 1rem;
+    margin-top: 3rem;
     color: white;
     width: auto;
     font-weight: bold;
@@ -172,7 +154,7 @@ body{
 }
 .sale-form{
     width: 400px;
-    height: 500px;
+    height: 560px;
     background-color: white;
     border-radius: 1rem;
     position: relative;
@@ -200,11 +182,12 @@ body{
     color: black;
     font-weight: bold;
     text-align: center;
-    margin: 10px auto 20px auto;
+    margin: 10px auto 10px auto;
 }
 .sf-price{
     width: 70%;
     height: 50px;
+    margin-top: 10px;
     margin-left: 15%;
     padding-left: 20px;
     padding-right: 20px;
@@ -226,16 +209,4 @@ body{
     margin-left: 39%;
     margin-top: 10px;
 }
-/*------------------footer*/
-.footer{
-    height: 1.5rem;
-    width: 100vw;
-    color: white;
-    font-size: 0.5rem;
-    font-weight: bold;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    background-color: var(--dark-Violet);
-    padding-top: 0.5rem;
-}
+

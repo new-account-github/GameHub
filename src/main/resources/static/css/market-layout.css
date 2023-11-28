@@ -1,0 +1,25 @@
+
+.body{
+    min-height: 84vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.nav-side{
+    background-color: var(--dark-Violet);
+}
+.wallet-address{
+    margin: 30px 0;
+}
+.wallet-address span{
+    color: var(--phantom);
+}
+i{
+    margin-right: 10px;
+}
+.nav-side-item{
+    padding: 20px 0 0 0;
+}
+.active{
+    color: var(--pink);
+}

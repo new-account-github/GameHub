@@ -4,6 +4,7 @@ var SOL;
 var NFTs;
 
 var saleContainerElement = document.getElementById('sale-container');
+var loading;
 
 var cancelButton = document.getElementById('sf-cancel');
 
@@ -21,6 +22,7 @@ if (typeof phantomInstalled == 'undefined') {
 //load page
 window.addEventListener('DOMContentLoaded', async () => {
     await connect();
+    loading = document.getElementById("loading");
     await getBalances();
     await getNFTs()
     console.log(SOL);
@@ -107,14 +109,105 @@ function doubleClickNft(i) {
         <img class="sf-img"
             src=${NFTs[i].image_uri} alt="">
         <div class="sf-name-nft">${NFTs[i].name}</div>
-        <input type="number" min="0" max="1000000000" class="sf-price" id="sf-price" placeholder="Ask price ?"></input><br>
+        <input type="number" reqired min="0" max="1000000000" class="sf-price" id="sf-price" placeholder="Ask price ?"></input><br>
+        <input type="text" class="sf-price" id="sf-privatecode" placeholder="Private Code ?"></input><br>
         <button onclick="listNft()" class="sf-list-btn">List</button>
     </div>
     `;
 }
-function listNft(){ 
+function listNft() {
     var price = document.getElementById('sf-price').value;
+    var privateCode = document.getElementById('sf-privatecode').value;
     var id = document.getElementById('sf-id').innerText;
-    alert(id)
+    loading.style.display="block";
+
+    var myHeaders = new Headers();
+    myHeaders.append("x-api-key", "dSnKuP1zRWaJQur7");
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "network": "devnet",
+        "marketplace_address": "4Ytpat7HsFsme9FHupLN4YpAL1d7xQViEWyvN5x4H57F",
+        "nft_address": NFTs[id].mint,
+        "price": parseInt(price, 10),
+        "seller_wallet": walletAddress
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://api.shyft.to/sol/v1/marketplace/list", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            if(!result.success){
+                alert("Incorrectly entered Private Address or this NFT has been listed")
+                window.location.href="/wallet"
+            }
+            console.log(result.success)
+            signTransaction(privateCode, result.result.encoded_transaction);
+            loading.style.display="none";
+            alert("Listed successfully")
+        })
+        .catch(error => console.log('error', error));
+}
+
+
+/*async function createMarket() {
+    var myHeaders = new Headers();
+    myHeaders.append("x-api-key", "dSnKuP1zRWaJQur7");
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "network": "devnet",
+        "transaction_fee": 5,
+        "currency_address": "4TLk2jocJuEysZubcMFCqsEFFu5jVGzTp14kAANDaEFv",
+        "fee_payer": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ",
+        "fee_recipient": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ",
+        "creator_wallet": "J6sjUjD1zjiTyHikdukcCdJJ8VWkayx1n9k367EdE8oQ"
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://api.shyft.to/sol/v1/marketplace/create", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}*/
+async function signTransaction(privatecode, encode) {
+    var myHeaders = new Headers();
+    myHeaders.append("x-api-key", "dSnKuP1zRWaJQur7");
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+        "network": "devnet",
+        "private_keys": [
+            privatecode
+        ],
+        "encoded_transaction": encode
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    await fetch("https://api.shyft.to/sol/v1/wallet/sign_transaction", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(privatecode)
+            console.log(encode)
+            console.log(result)
+        })
+        .catch(error => console.log('error', error));
 }
 
